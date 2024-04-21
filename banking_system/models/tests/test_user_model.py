@@ -6,7 +6,7 @@ from ..user_model import UserModel
 from ..account_model import AccountModel
 
 
-class TestLoginForms(TestCase):
+class TestUserModel(TestCase):
     def test_empty(self):
         with self.assertRaises(ValidationError):
             UserModel.objects.create(name="")
