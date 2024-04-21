@@ -29,3 +29,4 @@ class UserModel(models.Model):
 
         user = UserModel.objects.create(name=name)
         AccountModel.objects.create(user=user, balance=0)
+        return user
