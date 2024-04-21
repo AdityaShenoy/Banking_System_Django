@@ -6,6 +6,7 @@ from django.urls import reverse
 from .forms import DepositForm
 from models.transaction_model import TransactionModel
 from models.user_model import UserModel
+from models.account_model import AccountModel
 
 from typing import TYPE_CHECKING
 
@@ -46,3 +47,10 @@ class DepositView(View):
         receiver = UserModel.objects.get(name=user_name)
         amount = form.cleaned_data.get("amount")
         TransactionModel.objects.create(sender=None, receiver=receiver, amount=amount)
+        account = AccountModel.objects.get(user__name=user_name)
+
+        # This will always be True as form validity is checked
+        # This is added for type check error suppression
+        if amount is not None:
+            account.balance += amount
+        account.save()  # type: ignore
