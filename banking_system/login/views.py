@@ -15,6 +15,8 @@ if TYPE_CHECKING:
 # Create your views here.
 class LoginView(View):
     def get(self, request: "HttpRequest"):
+        if request.session.get("user_name"):
+            return HttpResponseRedirect(reverse("dashboard"))
         return render(
             request,
             "login.html",
@@ -27,7 +29,7 @@ class LoginView(View):
         form = LoginForm(request.POST)
         if form.is_valid():
             self.handle_valid_login(request, form)
-            return HttpResponseRedirect(reverse("login"))
+            return HttpResponseRedirect(reverse("dashboard"))
         return render(
             request,
             "login.html",

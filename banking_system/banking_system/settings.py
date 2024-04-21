@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "models",
     "home",
     "login",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
