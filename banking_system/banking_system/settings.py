@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "deposit",
     "withdraw",
     "send_money",
+    "transactions",
 ]
 
 MIDDLEWARE = [

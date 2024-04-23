@@ -26,4 +26,5 @@ urlpatterns = [
     path("deposit/", include("deposit.urls")),
     path("withdraw/", include("withdraw.urls")),
     path("send_money/", include("send_money.urls")),
+    path("transactions/", include("transactions.urls")),
 ]
