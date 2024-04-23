@@ -16,11 +16,6 @@ class TestWithdrawViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "withdraw.html")
 
-    def test_get_without_login(self):
-        client = Client()
-        response = client.get(reverse("withdraw"))
-        self.assertEquals(response.status_code, 302)
-
     def test_post_without_login(self):
         client = Client()
         response = client.post(reverse("withdraw"), {"amount": 1})

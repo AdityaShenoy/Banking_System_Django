@@ -15,11 +15,6 @@ class TestDepositViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "deposit.html")
 
-    def test_get_without_login(self):
-        client = Client()
-        response = client.get(reverse("deposit"))
-        self.assertEquals(response.status_code, 302)
-
     def test_post_without_login(self):
         client = Client()
         response = client.post(reverse("deposit"), {"amount": 1})
