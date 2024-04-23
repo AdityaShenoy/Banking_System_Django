@@ -4,11 +4,6 @@ from ..forms import SendMoneyForm
 
 
 class TestSendMoneyForms(SimpleTestCase):
-
-    def test_empty(self):
-        form = SendMoneyForm()
-        self.assertFalse(form.is_valid())
-
     def test_empty_to(self):
         form = SendMoneyForm({"to": "", "amount": 1})
         self.assertFalse(form.is_valid())

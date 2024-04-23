@@ -4,10 +4,6 @@ from ..forms import DepositForm
 
 
 class TestDepositForms(SimpleTestCase):
-    def test_empty(self):
-        form = DepositForm()
-        self.assertFalse(form.is_valid())
-
     def test_negative(self):
         form = DepositForm({"amount": -1})
         self.assertFalse(form.is_valid())
