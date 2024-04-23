@@ -21,10 +21,15 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
-    path("login/", include("login.urls")),
-    path("dashboard/", include("dashboard.urls")),
-    path("deposit/", include("deposit.urls")),
-    path("withdraw/", include("withdraw.urls")),
-    path("send_money/", include("send_money.urls")),
-    path("transactions/", include("transactions.urls")),
+    *[
+        path(f"{app}/", include(f"{app}.urls"))
+        for app in [
+            "login",
+            "dashboard",
+            "deposit",
+            "withdraw",
+            "send_money",
+            "transactions",
+        ]
+    ],
 ]
