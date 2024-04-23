@@ -15,8 +15,8 @@ class TestTransactionModel(TestCase):
             sender=self.sender, receiver=self.receiver, amount=1
         )
         transaction = TransactionModel.objects.get(sender__name="Sender")
-        self.assertEquals(transaction.sender.name, "Sender")
-        self.assertEquals(transaction.receiver.name, "Receiver")
+        self.assertEquals(transaction.sender.name, "Sender")  # type: ignore
+        self.assertEquals(transaction.receiver.name, "Receiver")  # type: ignore
         self.assertEquals(transaction.amount, 1)
         self.assertIsNotNone(transaction.time)
 
