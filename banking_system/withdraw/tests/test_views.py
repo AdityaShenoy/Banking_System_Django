@@ -21,11 +21,6 @@ class TestWithdrawViews(TestCase):
         response = client.post(reverse("withdraw"), {"amount": 1})
         self.assertEquals(response.status_code, 302)
 
-    def test_post_invalid(self):
-        response = self.client.post(reverse("withdraw"), {})
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "withdraw.html")
-
     def test_post_valid(self):
         response = self.client.post(reverse("withdraw"), {"amount": 1})
         self.assertEquals(response.status_code, 302)

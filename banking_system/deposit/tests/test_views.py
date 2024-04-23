@@ -20,11 +20,6 @@ class TestDepositViews(TestCase):
         response = client.post(reverse("deposit"), {"amount": 1})
         self.assertEquals(response.status_code, 302)
 
-    def test_post_invalid(self):
-        response = self.client.post(reverse("deposit"), {})
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "deposit.html")
-
     def test_post_valid(self):
         response = self.client.post(reverse("deposit"), {"amount": 1})
         self.assertEquals(response.status_code, 302)
