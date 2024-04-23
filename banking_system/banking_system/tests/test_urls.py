@@ -25,6 +25,4 @@ class TestUrls(SimpleTestCase):
         for url_name, class_ in url_name_to_class.items():
             url = reverse(url_name)
             resolved_url = resolve(url)
-            # Adding ignore comment to suppress false positive error
-            # Cannot access member "view_class" for type "function"
-            self.assertEquals(resolved_url.func.view_class, class_)  # type: ignore
+            self.assertEquals(resolved_url.func.view_class, class_)  # type: ignore to suppress false positive error
