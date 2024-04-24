@@ -1,3 +1,4 @@
+from django.http.request import HttpRequest
 from django.http.response import HttpResponseRedirect
 from django.views import View
 from django.urls import reverse
@@ -8,23 +9,18 @@ from models.user_model import UserModel
 from models.account_model import AccountModel
 from banking_system.utils.render_form import render_form
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from django.http.request import HttpRequest
-
 
 # Create your views here.
 class SendMoneyView(View):
-    def render_helper(self, request: "HttpRequest", form: SendMoneyForm):
+    def render_helper(self, request: HttpRequest, form: SendMoneyForm):
         return render_form(request, "Send Money", "send_money", form)
 
-    def get(self, request: "HttpRequest"):
+    def get(self, request: HttpRequest):
         if not request.session.get("user_name"):
             return HttpResponseRedirect(reverse("login"))
         return self.render_helper(request, SendMoneyForm())
 
-    def post(self, request: "HttpRequest"):
+    def post(self, request: HttpRequest):
         user_name = request.session.get("user_name")
         if not user_name:
             return HttpResponseRedirect(reverse("login"))

@@ -1,19 +1,15 @@
 from django.shortcuts import render
+from django.http.request import HttpRequest
 from django.http.response import HttpResponseRedirect
 from django.views import View
 from django.urls import reverse
 
 from models.user_model import UserModel
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from django.http.request import HttpRequest
-
 
 # Create your views here.
 class TransactionsView(View):
-    def get(self, request: "HttpRequest"):
+    def get(self, request: HttpRequest):
         user_name = request.session.get("user_name")
         if not user_name:
             return HttpResponseRedirect(reverse("login"))
