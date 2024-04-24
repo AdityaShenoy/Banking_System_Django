@@ -19,11 +19,6 @@ class TestSendMoneyViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "send_money.html")
 
-    def test_post_without_login(self):
-        client = Client()
-        response = client.post(reverse("send_money"), {"to": "User 2", "amount": 1})
-        self.assertEquals(response.status_code, 302)
-
     def test_post_valid(self):
         response = self.client1.post(
             reverse("send_money"), {"to": "User 2", "amount": 1}

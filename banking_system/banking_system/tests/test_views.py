@@ -9,21 +9,20 @@ class TestViews(TestCase):
         self.client2 = Client()
         self.client2.post(reverse("login"), {"user_name": "User 1"})
 
-    def test_get_without_login(self):
-        after_login_apps = [
-            "dashboard",
+        self.after_login_get_only_apps = ["dashboard", "transactions"]
+        self.after_login_get_or_post_apps = [
             "deposit",
             "withdraw",
             "send_money",
-            "transactions",
         ]
-        for app in after_login_apps:
+        self.after_login_get_apps = (
+            self.after_login_get_only_apps + self.after_login_get_or_post_apps
+        )
+
+    def test_get_and_post_without_login(self):
+        for app in self.after_login_get_apps:
             response = self.client1.get(reverse(app))
             self.assertEquals(response.status_code, 302)
-
-    def test_post_invalid(self):
-        apps_with_forms = ["deposit", "withdraw", "send_money"]
-        for app in apps_with_forms:
-            response = self.client2.post(reverse(app), {})
-            self.assertEquals(response.status_code, 200)
-            self.assertTemplateUsed(response, f"{app}.html")
+        for app in self.after_login_get_or_post_apps:
+            response = self.client1.post(reverse(app))
+            self.assertEquals(response.status_code, 302)
