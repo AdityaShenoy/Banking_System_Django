@@ -10,11 +10,6 @@ class TestDepositViews(TestCase):
         self.client = Client()
         self.client.post(reverse("login"), {"user_name": "User 1"})
 
-    def test_get(self):
-        response = self.client.get(reverse("deposit"))
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "deposit.html")
-
     def test_post_valid(self):
         response = self.client.post(reverse("deposit"), {"amount": 1})
         self.assertEquals(response.status_code, 302)

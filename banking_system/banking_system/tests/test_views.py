@@ -26,3 +26,9 @@ class TestViews(TestCase):
         for app in self.after_login_get_or_post_apps:
             response = self.client1.post(reverse(app))
             self.assertEquals(response.status_code, 302)
+
+    def test_get_after_login(self):
+        for app in self.after_login_get_apps:
+            response = self.client2.get(reverse(app))
+            self.assertEquals(response.status_code, 200)
+            self.assertTemplateUsed(response, f"{app}.html")

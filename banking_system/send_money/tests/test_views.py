@@ -14,11 +14,6 @@ class TestSendMoneyViews(TestCase):
         self.client2 = Client()
         self.client2.post(reverse("login"), {"user_name": "User 2"})
 
-    def test_get(self):
-        response = self.client1.get(reverse("send_money"))
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "send_money.html")
-
     def test_post_valid(self):
         response = self.client1.post(
             reverse("send_money"), {"to": "User 2", "amount": 1}
