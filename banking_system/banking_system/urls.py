@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from home.views import HomeView
 from login.views import LoginView
@@ -38,7 +38,7 @@ app_to_class = {
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("home.urls")),
+    path("", HomeView.as_view(), name="home"),
     *[
         path(f"{app}/", class_.as_view(), name=app)
         for app, class_ in app_to_class.items()
