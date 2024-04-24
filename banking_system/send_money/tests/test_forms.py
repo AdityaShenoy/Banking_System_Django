@@ -8,7 +8,7 @@ class TestSendMoneyForms(SimpleTestCase):
         form = SendMoneyForm({"to": "", "amount": 1})
         self.assertFalse(form.is_valid())
 
-    def test_empty_big_to(self):
+    def test_big_to(self):
         form = SendMoneyForm({"to": "a" * 51, "amount": 1})
         self.assertFalse(form.is_valid())
 
