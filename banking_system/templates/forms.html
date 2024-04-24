@@ -1,7 +1,17 @@
-{% for field in form %}
-    <div class="mb-3">
-        <label for="id_{{ field.name }}" class="form-label">{{ field.label }}</label>
-        {% if field.errors %}<div class="bg-danger-subtle">{{ field.errors }}</div>{% endif %}
-        {{ field }}
-    </div>
-{% endfor %}
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block body %}
+    <form action="{{ url }}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="id_{{ field.name }}" class="form-label">{{ field.label }}</label>
+                {% if field.errors %}<div class="bg-danger-subtle">{{ field.errors }}</div>{% endif %}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock body %}

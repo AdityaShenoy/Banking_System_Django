@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
 from django.views import View
 from django.urls import reverse
@@ -7,6 +6,7 @@ from .forms import WithdrawForm
 from models.transaction_model import TransactionModel
 from models.user_model import UserModel
 from models.account_model import AccountModel
+from banking_system.utils.render_form import render_form
 
 from typing import TYPE_CHECKING
 
@@ -17,8 +17,7 @@ if TYPE_CHECKING:
 # Create your views here.
 class WithdrawView(View):
     def render_helper(self, request: "HttpRequest", form: WithdrawForm):
-        context = {"form": form}
-        return render(request, "withdraw.html", context)
+        return render_form(request, "Withdraw", "withdraw", form)
 
     def get(self, request: "HttpRequest"):
         if not request.session.get("user_name"):

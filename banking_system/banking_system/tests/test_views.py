@@ -27,8 +27,14 @@ class TestViews(TestCase):
             response = self.client1.post(reverse(app))
             self.assertEquals(response.status_code, 302)
 
-    def test_get_after_login(self):
-        for app in self.after_login_get_apps:
+    def test_get_after_login_no_forms(self):
+        for app in self.after_login_get_only_apps:
             response = self.client2.get(reverse(app))
             self.assertEquals(response.status_code, 200)
             self.assertTemplateUsed(response, f"{app}.html")
+
+    def test_get_after_login_with_forms(self):
+        for app in self.after_login_get_or_post_apps:
+            response = self.client2.get(reverse(app))
+            self.assertEquals(response.status_code, 200)
+            self.assertTemplateUsed(response, "forms.html")
