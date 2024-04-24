@@ -18,18 +18,29 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from home.views import HomeView
+from login.views import LoginView
+from dashboard.views import DashboardView
+from deposit.views import DepositView
+from withdraw.views import WithdrawView
+from send_money.views import SendMoneyView
+from transactions.views import TransactionsView
+
+app_to_class = {
+    "home": HomeView,
+    "login": LoginView,
+    "dashboard": DashboardView,
+    "deposit": DepositView,
+    "withdraw": WithdrawView,
+    "send_money": SendMoneyView,
+    "transactions": TransactionsView,
+}
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
     *[
-        path(f"{app}/", include(f"{app}.urls"))
-        for app in [
-            "login",
-            "dashboard",
-            "deposit",
-            "withdraw",
-            "send_money",
-            "transactions",
-        ]
+        path(f"{app}/", class_.as_view(), name=app)
+        for app, class_ in app_to_class.items()
     ],
 ]
