@@ -3,5 +3,17 @@
     Dashboard
 {% endblock title %}
 {% block body %}
-    <div class="flex">You are logged in!</div>
+    <div class="list-group">
+        <a href="{% url 'deposit' %}"
+           class="list-group-item list-group-item-action active"
+           aria-current="true">Deposit Money</a>
+        <a href="{% url 'withdraw' %}"
+           class="list-group-item list-group-item-action">Withdraw Money</a>
+        <a href="{% url 'withdraw' %}"
+           class="list-group-item list-group-item-action">Send Money</a>
+        <a href="{% url 'transactions' %}"
+           class="list-group-item list-group-item-action">Transactions</a>
+        <a href="{% url 'logout' %}"
+           class="list-group-item list-group-item-action">Logout</a>
+    </div>
 {% endblock body %}
