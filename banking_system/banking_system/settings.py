@@ -38,12 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "models",
-    "home",
-    "login",
     "dashboard",
-    "deposit",
-    "withdraw",
-    "send_money",
     "transactions",
 ]
 
