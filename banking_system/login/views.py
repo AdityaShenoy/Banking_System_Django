@@ -11,7 +11,7 @@ from banking_system.utils.render_form import render_form
 # Create your views here.
 class LoginView(View):
     def render_helper(self, request: HttpRequest, form: LoginForm):
-        return render_form(request, "Send Money", "send_money", form)
+        return render_form(request, "Login", "login", form)
 
     def get(self, request: HttpRequest):
         if request.session.get("user_name"):
