@@ -12,7 +12,7 @@ class TestLoginViews(TestCase):
     def test_get(self):
         response = self.client.get(reverse("login"))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "login.html")
+        self.assertTemplateUsed(response, "forms.html")
 
     def test_get_already_logged_in(self):
         client = Client()
@@ -23,7 +23,7 @@ class TestLoginViews(TestCase):
     def test_post_invalid(self):
         response = self.client.post(reverse("login"), {})
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "login.html")
+        self.assertTemplateUsed(response, "forms.html")
 
     def test_post_valid_new_user(self):
         response = self.client.post(reverse("login"), {"user_name": "User 1"})
