@@ -25,6 +25,7 @@ from deposit.views import DepositView
 from withdraw.views import WithdrawView
 from send_money.views import SendMoneyView
 from transactions.views import TransactionsView
+from logout.views import LogoutView
 
 app_to_class = {
     "home": HomeView,
@@ -34,6 +35,7 @@ app_to_class = {
     "withdraw": WithdrawView,
     "send_money": SendMoneyView,
     "transactions": TransactionsView,
+    "logout": LogoutView,
 }
 
 urlpatterns = [
